@@ -69,7 +69,7 @@ primary_region = '<REGION>' #Pick a Fly.io region
 
 3. Dockerize our React application:
 ```
-FROM node:20-alpine as BUILD_IMAGE
+FROM node:20-alpine
 
 WORKDIR /
 
