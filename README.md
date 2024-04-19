@@ -67,7 +67,7 @@ primary_region = '<REGION>' #Pick a Fly.io region
 
 > Note: Fly Proxy reaches services through a private IPv4 address on each VM, so the process should listen on 0.0.0.0:<port> ([but see A note on IPv4 and IPv6 wildcards](https://fly.io/docs/networking/app-services/#a-note-on-ipv4-and-ipv6-wildcards)).
 
-3. I have created a ngnix proxy server for this using simple Dockerfile:
+3. Dockerize our React application:
 ```
 FROM node:20-alpine as BUILD_IMAGE
 
