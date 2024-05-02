@@ -41,7 +41,6 @@ const CoursesPage = () => {
 								name="update"
 								id="update"
 								defaultChecked={course.canUpdate}
-								disabled
 							/>
 						</label>
 						<label htmlFor="delete">
@@ -51,7 +50,6 @@ const CoursesPage = () => {
 								name="delete"
 								id="delete"
 								defaultChecked={course.canDelete}
-								disabled
 							/>
 						</label>
 					</div>

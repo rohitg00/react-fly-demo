@@ -1,0 +1,37 @@
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: 'default'
+  # Importing `common_roles` in so they can be used in the resource policy.
+  importDerivedRoles:
+    - common_roles
+
+  # This resource file is reviewed for when checking permissions when a resource is of `kind` "expense:object"
+  resource: 'course'
+
+  rules:
+    - actions: ["create"]
+      effect: EFFECT_ALLOW
+      roles:
+        - USER
+
+    # A `principal` that owns the resource can update it.
+    - actions: ["view", "update"]
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - AUTHOR
+
+    # If the `principal`s role is `user` they can view the course if its published
+    - actions: ["view"]
+      effect: EFFECT_ALLOW
+      roles:
+        - USER
+      condition:
+        match:
+          expr: request.resource.attr.status == "PUBLISHED"
+
+    # If the `principal`s role is `admin` then all the actions are allowed.
+    - actions: ["view", "create", "update", "delete"]
+      effect: EFFECT_ALLOW
+      roles:
+        - ADMIN

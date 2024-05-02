@@ -1,0 +1,14 @@
+apiVersion: api.cerbos.dev/v1
+description: |-
+  Common dynamic roles used within the Courses Demo app
+derivedRoles:
+  name: common_roles
+  definitions:
+    # If the principal belongs to group `USER` in a request, and the `resource`s
+    # `autherId` attribute matches `principal`s `id` then the `principal` is considered
+    # as `AUTHOR` within Cerbos for the policy evaluation
+    - name: AUTHOR
+      parentRoles: ["USER"]
+      condition:
+        match:
+          expr: request.resource.attr.authorId == request.principal.id

@@ -5,7 +5,7 @@ const courseService = {
     return new Promise(resolve => {
       setTimeout(() => {
         const localValue = localStorage.getItem('Courses');
-        
+
         resolve({
           success: true,
           data: localValue ? JSON.parse(localValue) : [],
@@ -41,7 +41,7 @@ const courseService = {
         const courses = JSON.parse(localValue);
 
         const updatedCourse = courses.map(c =>
-          c.id === course.id ? {...c, ...course} : c
+          c.id === course.id ? {...c, ...course} : c,
         );
         localStorage.setItem('Courses', JSON.stringify(updatedCourse));
 

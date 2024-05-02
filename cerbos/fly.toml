@@ -1,0 +1,57 @@
+# fly.toml app configuration file generated for cerbos-pdp-fly on 2024-05-02T15:23:34+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'cerbos-pdp-fly'
+primary_region = 'lhr'
+
+[build]
+  image = 'ghcr.io/cerbos/cerbos:0.35.1'
+
+[[mounts]]
+  source = 'policies'
+  destination = '/policies'
+  initial_size = '1GB'
+
+[http_service]
+  internal_port = 3592
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[services]]
+  protocol = ''
+  internal_port = 3592
+
+  [[services.ports]]
+    port = 3592
+    handlers = ['tls', 'http']
+
+  [[services.http_checks]]
+    interval = '5s'
+    timeout = '2s'
+    grace_period = '5s'
+    method = 'get'
+    path = '/_cerbos/health'
+    protocol = 'http'
+
+[[services]]
+  protocol = ''
+  internal_port = 3593
+
+  [[services.ports]]
+    port = 3593
+    handlers = ['tls']
+
+    [services.ports.tls_options]
+      alpn = ['h2']
+
+[[metrics]]
+  port = 3592
+  path = '/_cerbos/metrics'
+
+[[vm]]
+  size = 'shared-cpu-1x'
