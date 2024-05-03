@@ -1,20 +1,12 @@
-# fly.toml app configuration file generated for cerbos-pdp-fly on 2024-05-02T15:23:34+05:30
-# fly.toml app configuration file generated for cerbos-pdp-fly-little-frost-3317 on 2024-05-02T14:57:49+01:00
+# fly.toml app configuration file generated for cerbos-pdp on 2024-05-03T11:15:47+05:30
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'cerbos-pdp-fly'
-app = 'cerbos-pdp-fly-little-frost-3317'
+app = 'cerbos-pdp'
 primary_region = 'lhr'
 
 [build]
-  image = 'ghcr.io/cerbos/cerbos:0.35.1'
-
-[[mounts]]
-  source = 'policies'
-  destination = '/policies'
-  initial_size = '1GB'
 
 [http_service]
   internal_port = 3592
@@ -51,9 +43,9 @@ primary_region = 'lhr'
     [services.ports.tls_options]
       alpn = ['h2']
 
+[[vm]]
+  size = 'shared-cpu-1x'
+
 [[metrics]]
   port = 3592
   path = '/_cerbos/metrics'
-
-[[vm]]
-  size = 'shared-cpu-1x'

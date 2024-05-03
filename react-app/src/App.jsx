@@ -4,10 +4,10 @@ import {CerbosProvider} from '@cerbos/react';
 import {Route, Routes} from 'react-router-dom';
 import {HomePage, CoursesPage} from './Pages';
 
-const URL = 'https://cerbos-pdp-fly.fly.dev:3592';
+const URL = 'https://cerbos-pdp.fly.dev:3592';
 console.log('Hitting Cerbos PDP at', URL);
 
-const client = new Cerbos(URL);
+const client = new Cerbos('http://localhost:3592');
 
 const App = () => {
   return (

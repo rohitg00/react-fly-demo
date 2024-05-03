@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  cerbos:
+    build: ./cerbos
+    container_name: cerbose-http
+    ports:
+      - "3592:3592"
+      - "3593:3593"
+    volumes:
+      - ./cerbos/policies:/policies
+    command: ["server"]
+
+  web:
+    build: ./react-app
+    container_name: cerbose-react
+    ports:
+      - '8080:8080'
+    develop:
+      watch:
+        - action: sync
+          path: ./react-app
+          target: /app
+        - action: rebuild
+          path: ./react-app/package.json
