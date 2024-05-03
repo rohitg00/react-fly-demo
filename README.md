@@ -14,7 +14,7 @@ This cloud deployment of a React-based web application provides a platform for u
 
 Refer our documentation for detailed configuration for this demo - [Fly cloud deployment](https://docs.cerbos.dev/cerbos/latest/deployment/cloud-platforms)
 
-1. Create a Fly.io [TOML file](fly.toml) that include Fly deployment configuration.
+1. Create a Fly.io TOML file that include Fly deployment configuration.
 
 You can deploy Cerbos on Fly.io as a [Fly Launch](https://fly.io/docs/apps/) app. The following fly.toml file shows how to deploy Cerbos with health checks and metrics:
 ```
